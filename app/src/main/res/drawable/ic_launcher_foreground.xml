@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="108dp"
-    android:height="108dp"
-    android:viewportWidth="108"
-    android:viewportHeight="108">
-
-    <path
-        android:fillColor="#FFFFFFFF"
-        android:pathData="M54,34c-11.05,0 -20,8.95 -20,20s8.95,20 20,20c4.9,0 9.39,-1.76 12.87,-4.67l12.4,12.4l4.24,-4.24l-12.4,-12.4C73.24,61.39 75,56.9 75,52c0,-11.05 -8.95,-20 -20,-20zM54,68c-7.73,0 -14,-6.27 -14,-14s6.27,-14 14,-14 14,6.27 14,14 -6.27,14 -14,14z" />
-
-    <path
-        android:fillColor="#FFFFD9A0"
-        android:pathData="M64,66l4,4l12,-12l-4,-4l-12,12z" />
-
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <!-- The adaptive-icon safe area is centered; a quiet frosted circle surrounds search. -->
+    <path android:fillColor="#B3FFFFFF"
+        android:pathData="M54,19a35,35 0,1 0,0 70a35,35 0,1 0,0 -70z"/>
+    <path android:fillColor="#66FFFFFF"
+        android:pathData="M54,23a31,31 0,1 0,0 62a31,31 0,1 0,0 -62z"/>
+    <path android:strokeColor="#FF2D4B7B" android:strokeWidth="6"
+        android:strokeLineCap="round" android:fillColor="@android:color/transparent"
+        android:pathData="M49,33 A17,17 0,1 1,49 67 A17,17 0,1 1,49 33" />
+    <path android:strokeColor="#FF2D4B7B" android:strokeWidth="6"
+        android:strokeLineCap="round" android:fillColor="@android:color/transparent"
+        android:pathData="M62,64 L78,80" />
+    <path android:strokeColor="#FFFFFFFF" android:strokeWidth="2.5"
+        android:strokeLineCap="round" android:fillColor="@android:color/transparent"
+        android:pathData="M38,43 Q42,35 51,35" />
 </vector>

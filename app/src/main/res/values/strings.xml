@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">CTS Button</string>
-    <string name="app_title">Circle to Search Button</string>
-    <string name="app_subtitle">A floating button that wakes Circle to Search.</string>
+    <string name="app_name">wakeCTS</string>
+    <string name="app_title">wakeCTS</string>
+    <string name="app_subtitle">Circle to Search, one gesture away.</string>
 
     <string name="service_section">Accessibility service</string>
     <string name="service_description">Enable the Accessibility service to show the floating button over other apps.</string>
@@ -13,7 +13,7 @@
     <string name="open_accessibility_settings">Open settings</string>
 
     <string name="button_section">Floating button</string>
-    <string name="button_side_description">Choose which side of the screen the button starts on. You can still drag it vertically.</string>
+    <string name="button_side_description">Choose where the floating control rests.</string>
 
     <string name="left_side">Left</string>
     <string name="right_side">Right</string>
@@ -21,7 +21,6 @@
     <string name="haptic_feedback">Haptic feedback</string>
     <string name="assistant_fallback">Open Assistant if CTS fails</string>
 
-    <string name="testing_section">Test trigger</string>
     <string name="testing_description">Test whether the direct Circle to Search trigger works on this device.</string>
 
     <string name="test_cts_trigger">Test Circle to Search</string>
@@ -36,4 +35,24 @@
 
     <string name="accessibility_service_description">Shows a floating button that can wake Circle to Search or the system Assistant.</string>
     <string name="wake_button_enabled">Floating button enabled</string>
+    <string name="turn_on_wakects">Turn on wakeCTS</string>
+    <string name="turn_off_wakects">Turn off wakeCTS</string>
+    <string name="ocean_drop_hint">RELEASE TO TURN OFF</string>
+    <string name="ocean_drag_hint">DRAG HERE TO TURN OFF</string>
+    <string name="ocean_instructions">Drag the floating button to the bottom to let it sink and turn wakeCTS off. Triple-tap or hold to reveal the water.</string>
+    <string name="eyebrow">YOUR FLOATING SHORTCUT</string>
+    <string name="control_section">Quick control</string>
+    <string name="control_headline">Ready when you are.</string>
+    <string name="control_description">Keep Circle to Search within easy reach.</string>
+    <string name="status_active">ACTIVE</string>
+    <string name="status_paused">PAUSED</string>
+    <string name="preferences_section">Preferences</string>
+    <string name="placement_label">Button position</string>
+    <string name="system_access_section">System access</string>
+    <string name="testing_section">Try it out</string>
+    <string name="glass_footer">MADE FOR EVERY LIGHT</string>
+    <string name="quick_tile_label">wakeCTS</string>
+    <string name="quick_tile_on">On</string>
+    <string name="quick_tile_off">Off</string>
+    <string name="quick_tile_setup_needed">Enable service</string>
 </resources>

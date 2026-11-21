@@ -2,243 +2,205 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="match_parent" android:layout_height="match_parent"
     android:background="@color/app_background">
 
+    <com.example.ctsbutton.GlassBackdropView
+        android:id="@+id/glassBackdrop"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:importantForAccessibility="no" />
+
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
-
+        android:id="@+id/scrollContainer"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:clipToPadding="false" android:fillViewport="true"
+        android:scrollbars="none">
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="20dp">
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:paddingLeft="22dp"
+            android:paddingRight="22dp" android:paddingTop="30dp" android:paddingBottom="38dp">
 
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="24dp"
-                android:contentDescription="@string/app_title"
-                android:src="@drawable/ic_search_pencil" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/app_title"
-                android:textColor="@color/on_surface"
-                android:textAppearance="?attr/textAppearanceHeadlineMedium"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="@string/app_subtitle"
-                android:textColor="@color/on_surface_variant"
-                android:textAppearance="?attr/textAppearanceBodyMedium" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/statusChip"
-                style="@style/Widget.Material3.Chip.Assist"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="@string/service_disabled"
-                android:textColor="@color/on_surface" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:gravity="center_vertical" android:orientation="horizontal">
+                <FrameLayout android:layout_width="56dp" android:layout_height="56dp"
+                    android:background="@drawable/bg_glass_icon" android:elevation="4dp">
+                    <ImageView android:layout_width="26dp" android:layout_height="26dp"
+                        android:layout_gravity="center" android:src="@drawable/ic_search_pencil"
+                        android:contentDescription="@string/app_title"/>
+                </FrameLayout>
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp" android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/app_title" android:textColor="@color/on_surface"
+                        android:textSize="27sp" android:fontFamily="sans-serif-medium"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/app_subtitle" android:layout_marginTop="1dp"
+                        android:textSize="12sp" android:textColor="@color/on_surface_variant"/>
+                </LinearLayout>
+            </LinearLayout>
 
             <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                app:cardBackgroundColor="@color/glass_surface"
-                app:cardCornerRadius="28dp"
-                app:cardElevation="0dp"
-                app:strokeColor="@color/glass_border"
-                app:strokeWidth="1dp">
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="32dp" android:elevation="12dp"
+                app:cardElevation="8dp" app:cardUseCompatPadding="false"
+                app:cardBackgroundColor="@color/glass_hero" app:cardCornerRadius="32dp"
+                app:strokeColor="@color/glass_border" app:strokeWidth="1dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:padding="25dp"
+                    android:background="@drawable/bg_glass_sheen">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:gravity="center_vertical">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:text="@string/control_section"
+                            android:letterSpacing="0.16" android:textSize="11sp"
+                            android:textStyle="bold" android:textColor="@color/on_surface_variant"/>
+                        <TextView android:id="@+id/heroStatus" android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:background="@drawable/bg_glass_status"
+                            android:text="@string/status_active" android:textColor="@color/deep_ink"
+                            android:letterSpacing="0.10" android:textSize="10sp"
+                            android:fontFamily="sans-serif-medium"/>
+                    </LinearLayout>
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp" android:text="@string/control_headline"
+                        android:fontFamily="sans-serif-medium" android:textSize="29sp"
+                        android:textColor="@color/on_surface"/>
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp" android:text="@string/control_description"
+                        android:textSize="14sp" android:lineSpacingExtra="2dp"
+                        android:textColor="@color/on_surface_variant"/>
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/powerButton"
+                        android:layout_width="match_parent" android:layout_height="58dp"
+                        android:layout_marginTop="26dp" android:text="@string/turn_off_wakects"
+                        android:textAllCaps="false" android:textSize="15sp" android:textColor="@color/on_primary"
+                        app:backgroundTint="@color/power_fill" app:cornerRadius="21dp"
+                        app:icon="@drawable/ic_power" app:iconTint="@color/on_primary"
+                        app:iconPadding="11dp" app:iconGravity="textStart"/>
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp" android:text="@string/ocean_instructions"
+                        android:lineSpacingExtra="3dp" android:textSize="12sp"
+                        android:textColor="@color/on_surface_variant"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="22dp">
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="18dp" app:cardElevation="5dp"
+                app:cardBackgroundColor="@color/glass_surface" app:cardCornerRadius="29dp"
+                app:strokeColor="@color/glass_border" app:strokeWidth="1dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:padding="24dp"
+                    android:background="@drawable/bg_glass_sheen">
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:text="@string/preferences_section" android:textColor="@color/on_surface"
+                        android:fontFamily="sans-serif-medium" android:textSize="18sp"/>
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginTop="19dp" android:text="@string/placement_label"
+                        android:textColor="@color/on_surface_variant" android:textSize="13sp"/>
+                    <com.google.android.material.button.MaterialButtonToggleGroup
+                        android:id="@+id/sideButtonGroup" android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:layout_marginTop="11dp"
+                        app:singleSelection="true" app:selectionRequired="true">
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/leftSideButton" style="?attr/materialButtonOutlinedStyle"
+                            android:layout_width="0dp" android:layout_height="46dp"
+                            android:layout_weight="1" android:text="@string/left_side"
+                            android:textAllCaps="false" android:textColor="@color/on_surface"
+                            app:strokeColor="@color/outline_variant" app:backgroundTint="@color/side_button_tint"/>
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/rightSideButton" style="?attr/materialButtonOutlinedStyle"
+                            android:layout_width="0dp" android:layout_height="46dp"
+                            android:layout_weight="1" android:text="@string/right_side"
+                            android:textAllCaps="false" android:textColor="@color/on_surface"
+                            app:strokeColor="@color/outline_variant" app:backgroundTint="@color/side_button_tint"/>
+                    </com.google.android.material.button.MaterialButtonToggleGroup>
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:layout_marginTop="15dp" android:layout_marginBottom="9dp"
+                        android:background="@drawable/bg_divider"/>
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/wakeSwitch" android:layout_width="match_parent"
+                        android:layout_height="54dp" android:text="@string/wake_button_enabled"
+                        android:textColor="@color/on_surface" android:textSize="14sp"/>
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/hapticSwitch" android:layout_width="match_parent"
+                        android:layout_height="54dp" android:text="@string/haptic_feedback"
+                        android:textColor="@color/on_surface" android:textSize="14sp"/>
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/fallbackSwitch" android:layout_width="match_parent"
+                        android:layout_height="56dp" android:text="@string/assistant_fallback"
+                        android:textColor="@color/on_surface" android:textSize="14sp"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/service_section"
-                        android:textColor="@color/on_surface"
-                        android:textAppearance="?attr/textAppearanceTitleMedium" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/service_description"
-                        android:textColor="@color/on_surface_variant"
-                        android:textAppearance="?attr/textAppearanceBodyMedium" />
-
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="18dp" app:cardElevation="5dp"
+                app:cardBackgroundColor="@color/glass_surface" app:cardCornerRadius="29dp"
+                app:strokeColor="@color/glass_border" app:strokeWidth="1dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:padding="24dp"
+                    android:background="@drawable/bg_glass_sheen">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:gravity="center_vertical" android:orientation="horizontal">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:text="@string/system_access_section"
+                            android:textColor="@color/on_surface" android:fontFamily="sans-serif-medium"
+                            android:textSize="18sp"/>
+                        <TextView android:id="@+id/statusChip" android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:background="@drawable/bg_glass_status"
+                            android:text="@string/service_disabled" android:textSize="11sp"
+                            android:textColor="@color/on_surface_variant"/>
+                    </LinearLayout>
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp" android:text="@string/service_description"
+                        android:lineSpacingExtra="3dp" android:textColor="@color/on_surface_variant"
+                        android:textSize="13sp"/>
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/enableServiceButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="56dp"
-                        android:layout_marginTop="20dp"
-                        android:text="@string/enable_service"
-                        android:textColor="@color/on_primary"
-                        app:backgroundTint="@color/primary"
-                        app:cornerRadius="18dp" />
-
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:cardBackgroundColor="@color/glass_surface"
-                app:cardCornerRadius="28dp"
-                app:cardElevation="0dp"
-                app:strokeColor="@color/glass_border"
-                app:strokeWidth="1dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="22dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/button_section"
-                        android:textColor="@color/on_surface"
-                        android:textAppearance="?attr/textAppearanceTitleMedium" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/button_side_description"
-                        android:textColor="@color/on_surface_variant"
-                        android:textAppearance="?attr/textAppearanceBodyMedium" />
-
-                    <com.google.android.material.button.MaterialButtonToggleGroup
-                        android:id="@+id/sideButtonGroup"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="18dp"
-                        app:selectionRequired="true"
-                        app:singleSelection="true">
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/leftSideButton"
-                            style="?attr/materialButtonOutlinedStyle"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/left_side"
-                            android:textColor="@color/on_surface" />
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/rightSideButton"
-                            style="?attr/materialButtonOutlinedStyle"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/right_side"
-                            android:textColor="@color/on_surface" />
-
-                    </com.google.android.material.button.MaterialButtonToggleGroup>
-
-                    <com.google.android.material.materialswitch.MaterialSwitch
-                        android:id="@+id/hapticSwitch"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="22dp"
-                        android:text="@string/haptic_feedback"
-                        android:textColor="@color/on_surface" />
-
-                    <com.google.android.material.materialswitch.MaterialSwitch
-                        android:id="@+id/fallbackSwitch"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="14dp"
-                        android:text="@string/assistant_fallback"
-                        android:textColor="@color/on_surface" />
-                    <com.google.android.material.materialswitch.MaterialSwitch
-                        android:id="@+id/wakeSwitch"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="14dp"
-                        android:text="@string/wake_button_enabled"
-                        android:textColor="@color/on_surface" />
-
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="36dp"
-                app:cardBackgroundColor="@color/glass_surface"
-                app:cardCornerRadius="28dp"
-                app:cardElevation="0dp"
-                app:strokeColor="@color/glass_border"
-                app:strokeWidth="1dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="22dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/testing_section"
-                        android:textColor="@color/on_surface"
-                        android:textAppearance="?attr/textAppearanceTitleMedium" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/testing_description"
-                        android:textColor="@color/on_surface_variant"
-                        android:textAppearance="?attr/textAppearanceBodyMedium" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/testTriggerButton"
                         style="?attr/materialButtonOutlinedStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="52dp"
-                        android:layout_marginTop="20dp"
-                        android:text="@string/test_cts_trigger"
-                        android:textColor="@color/on_surface"
-                        app:cornerRadius="18dp"
-                        app:strokeColor="@color/glass_border" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/helpButton"
-                        style="@style/Widget.Material3.Button.TextButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="@string/help"
-                        android:textColor="@color/accent" />
-
+                        android:layout_width="match_parent" android:layout_height="50dp"
+                        android:layout_marginTop="18dp" android:text="@string/enable_service"
+                        android:textAllCaps="false" android:textColor="@color/deep_ink"
+                        app:cornerRadius="18dp" app:backgroundTint="@color/glass_tint"
+                        app:strokeColor="@color/outline_variant"/>
                 </LinearLayout>
-
             </com.google.android.material.card.MaterialCardView>
 
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="18dp" app:cardElevation="5dp"
+                app:cardBackgroundColor="@color/glass_surface" app:cardCornerRadius="29dp"
+                app:strokeColor="@color/glass_border" app:strokeWidth="1dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:padding="24dp"
+                    android:background="@drawable/bg_glass_sheen">
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:text="@string/testing_section" android:textColor="@color/on_surface"
+                        android:fontFamily="sans-serif-medium" android:textSize="18sp"/>
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginTop="9dp" android:text="@string/testing_description"
+                        android:textSize="13sp" android:lineSpacingExtra="3dp"
+                        android:textColor="@color/on_surface_variant"/>
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/testTriggerButton" style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="match_parent" android:layout_height="50dp"
+                        android:layout_marginTop="17dp" android:text="@string/test_cts_trigger"
+                        android:textAllCaps="false" android:textColor="@color/deep_ink"
+                        app:cornerRadius="18dp" app:backgroundTint="@color/glass_tint"
+                        app:strokeColor="@color/outline_variant"/>
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/helpButton" style="@style/Widget.Material3.Button.TextButton"
+                        android:layout_width="match_parent" android:layout_height="45dp"
+                        android:layout_marginTop="4dp" android:text="@string/help"
+                        android:textAllCaps="false" android:textColor="@color/accent"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="30dp" android:gravity="center" android:text="@string/glass_footer"
+                android:letterSpacing="0.13" android:textSize="10sp"
+                android:textColor="@color/on_surface_variant"/>
         </LinearLayout>
-
     </ScrollView>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

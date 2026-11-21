@@ -2,11 +2,18 @@ package com.example.ctsbutton
 
 import android.accessibilityservice.AccessibilityServiceInfo
 import android.content.Context
+import android.content.BroadcastReceiver
+import android.content.IntentFilter
 import android.content.Intent
 import android.os.Bundle
+import android.view.MotionEvent
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import android.provider.Settings
 import android.view.accessibility.AccessibilityManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.ctsbutton.databinding.ActivityMainBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
@@ -14,6 +21,14 @@ import com.google.android.material.snackbar.Snackbar
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private var stateReceiverRegistered = false
+
+    private val stateReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            AppPreferences.load(this@MainActivity)
+            refreshUi()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,14 +37,39 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        ViewCompat.setOnApplyWindowInsetsListener(binding.scrollContainer) { view, insets ->
+            val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.setPadding(0, bars.top, 0, bars.bottom)
+            insets
+        }
+        binding.scrollContainer.setOnScrollChangeListener { _, _, scrollY, _, _ ->
+            binding.glassBackdrop.setScrollOffset(scrollY)
+        }
         setupListeners()
     }
 
     override fun onResume() {
         super.onResume()
+        if (!stateReceiverRegistered) {
+            ContextCompat.registerReceiver(
+                this, stateReceiver,
+                IntentFilter(AssistantButtonService.ACTION_STATE_CHANGED),
+                ContextCompat.RECEIVER_NOT_EXPORTED
+            )
+            stateReceiverRegistered = true
+        }
         AppPreferences.load(this)
         refreshUi()
+        WakeQuickSettingsTile.requestSync(this)
+    }
+
+    override fun onPause() {
+        if (stateReceiverRegistered) {
+            unregisterReceiver(stateReceiver)
+            stateReceiverRegistered = false
+        }
+        super.onPause()
     }
 
     private fun setupListeners() {
@@ -37,13 +77,21 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
         }
 
-        binding.wakeSwitch.setOnCheckedChangeListener { _, checked ->
-            AppPreferences.setWakeEnabled(this, checked)
-
-            Intent(AssistantButtonService.ACTION_TOGGLE_BUTTON).also {
-                it.setPackage(packageName)
-                sendBroadcast(it)
+        binding.powerButton.setOnClickListener {
+            setWakeEnabled(!AppPreferences.isWakeEnabled)
+        }
+        binding.powerButton.setOnTouchListener { button, event ->
+            when (event.actionMasked) {
+                MotionEvent.ACTION_DOWN -> button.animate().scaleX(0.975f).scaleY(0.975f)
+                    .setDuration(120L).start()
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL ->
+                    button.animate().scaleX(1f).scaleY(1f).setDuration(170L).start()
             }
+            false // MaterialButton retains its ripple, click and accessibility behavior.
+        }
+
+        binding.wakeSwitch.setOnCheckedChangeListener { _, checked ->
+            if (AppPreferences.isWakeEnabled != checked) setWakeEnabled(checked)
         }
 
         binding.fallbackSwitch.setOnCheckedChangeListener { _, checked ->
@@ -87,6 +135,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun setWakeEnabled(enabled: Boolean) {
+        WakeStateController.setEnabled(this, enabled)
+        refreshUi()
+    }
+
     private fun refreshUi() {
         val serviceEnabled = isAccessibilityServiceEnabled()
 
@@ -103,6 +156,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.wakeSwitch.isChecked = AppPreferences.isWakeEnabled
+        binding.heroStatus.setText(
+            if (AppPreferences.isWakeEnabled) R.string.status_active else R.string.status_paused
+        )
+        binding.powerButton.setText(
+            if (AppPreferences.isWakeEnabled) R.string.turn_off_wakects
+            else R.string.turn_on_wakects
+        )
+        binding.powerButton.contentDescription = binding.powerButton.text
         binding.fallbackSwitch.isChecked = AppPreferences.isFallbackEnabled
         binding.hapticSwitch.isChecked = AppPreferences.isHapticEnabled
 

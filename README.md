@@ -1,4 +1,4 @@
-# CTS Floating Button
+# wakeCTS
 
 A modern Android app that shows a draggable floating button and attempts to wake Circle to Search.
 
@@ -22,7 +22,7 @@ compileOnly("io.github.libxposed:api:102.0.0")
 
 ## Enable the app
 
-1. Open **CTS Button**.
+1. Open **wakeCTS**.
 2. Tap **Enable service**.
 3. Enable the Accessibility service.
 4. Return to the app.
@@ -30,7 +30,7 @@ compileOnly("io.github.libxposed:api:102.0.0")
 ## Enable the LSPosed module
 
 1. Open LSPosed.
-2. Enable **CTS Button**.
+2. Enable **wakeCTS**.
 3. Open its scope.
 4. Select **System Framework** or **Android System**.
 5. Reboot the device.
