@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">wakeCTS</string>
+    <string name="app_title">wakeCTS</string>
+    <string name="service_disabled">Accessibility service is disabled.</string>
+    <string name="service_enabled">Accessibility service is enabled.</string>
+    <string name="enable_service">Enable service</string>
+    <string name="open_accessibility_settings">Open accessibility settings</string>
+    <string name="assistant_button_description">Wake Assistant</string>
+    <string name="assistant_unavailable">Assistant action is not available on this device.</string>
+    <string name="accessibility_service_description">Shows a floating button that wakes the system Assistant without reading the screen.</string>
+    <string name="how_it_works">Enable the Accessibility service, then tap the draggable floating button to wake the Assistant. On supported devices, this may open Circle to Search.</string>
+</resources>
