@@ -35,4 +35,5 @@
     <string name="cts_button_description">Wake Circle to Search</string>
 
     <string name="accessibility_service_description">Shows a floating button that can wake Circle to Search or the system Assistant.</string>
+    <string name="wake_button_enabled">Floating button enabled</string>
 </resources>

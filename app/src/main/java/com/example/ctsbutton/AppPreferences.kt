@@ -5,9 +5,14 @@ import android.content.Context
 object AppPreferences {
 
     private const val PREFS_NAME = "cts_button_prefs"
+
+    private const val KEY_WAKE_ENABLED = "wake_enabled"
     private const val KEY_FALLBACK_ENABLED = "fallback_enabled"
     private const val KEY_BUTTON_ON_LEFT = "button_on_left"
     private const val KEY_HAPTIC_ENABLED = "haptic_enabled"
+
+    var isWakeEnabled: Boolean = true
+        private set
 
     var isFallbackEnabled: Boolean = true
         private set
@@ -21,9 +26,18 @@ object AppPreferences {
     fun load(context: Context) {
         val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
+        isWakeEnabled = prefs.getBoolean(KEY_WAKE_ENABLED, true)
         isFallbackEnabled = prefs.getBoolean(KEY_FALLBACK_ENABLED, true)
         isButtonLeft = prefs.getBoolean(KEY_BUTTON_ON_LEFT, false)
         isHapticEnabled = prefs.getBoolean(KEY_HAPTIC_ENABLED, true)
+    }
+
+    fun setWakeEnabled(context: Context, enabled: Boolean) {
+        isWakeEnabled = enabled
+        context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+            .edit()
+            .putBoolean(KEY_WAKE_ENABLED, enabled)
+            .apply()
     }
 
     fun setFallbackEnabled(context: Context, enabled: Boolean) {

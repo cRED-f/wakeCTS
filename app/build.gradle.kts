@@ -46,6 +46,6 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
     implementation("org.lsposed.hiddenapibypass:hiddenapibypass:6.1")
-
+    implementation("androidx.dynamicanimation:dynamicanimation:1.1.0")
     compileOnly("io.github.libxposed:api:102.0.0")
 }

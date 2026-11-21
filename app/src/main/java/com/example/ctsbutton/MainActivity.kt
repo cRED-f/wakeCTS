@@ -37,6 +37,15 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
         }
 
+        binding.wakeSwitch.setOnCheckedChangeListener { _, checked ->
+            AppPreferences.setWakeEnabled(this, checked)
+
+            Intent(AssistantButtonService.ACTION_TOGGLE_BUTTON).also {
+                it.setPackage(packageName)
+                sendBroadcast(it)
+            }
+        }
+
         binding.fallbackSwitch.setOnCheckedChangeListener { _, checked ->
             AppPreferences.setFallbackEnabled(this, checked)
         }
@@ -93,6 +102,7 @@ class MainActivity : AppCompatActivity() {
             getString(R.string.enable_service)
         }
 
+        binding.wakeSwitch.isChecked = AppPreferences.isWakeEnabled
         binding.fallbackSwitch.isChecked = AppPreferences.isFallbackEnabled
         binding.hapticSwitch.isChecked = AppPreferences.isHapticEnabled
 
