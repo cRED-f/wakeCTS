@@ -1,13 +1,38 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">wakeCTS</string>
-    <string name="app_title">wakeCTS</string>
-    <string name="service_disabled">Accessibility service is disabled.</string>
-    <string name="service_enabled">Accessibility service is enabled.</string>
+    <string name="app_name">CTS Button</string>
+    <string name="app_title">Circle to Search Button</string>
+    <string name="app_subtitle">A floating button that wakes Circle to Search.</string>
+
+    <string name="service_section">Accessibility service</string>
+    <string name="service_description">Enable the Accessibility service to show the floating button over other apps.</string>
+
+    <string name="service_enabled">Service enabled</string>
+    <string name="service_disabled">Service disabled</string>
+
     <string name="enable_service">Enable service</string>
-    <string name="open_accessibility_settings">Open accessibility settings</string>
-    <string name="assistant_button_description">Wake Assistant</string>
-    <string name="assistant_unavailable">Assistant action is not available on this device.</string>
-    <string name="accessibility_service_description">Shows a floating button that wakes the system Assistant without reading the screen.</string>
-    <string name="how_it_works">Enable the Accessibility service, then tap the draggable floating button to wake the Assistant. On supported devices, this may open Circle to Search.</string>
+    <string name="open_accessibility_settings">Open settings</string>
+
+    <string name="button_section">Floating button</string>
+    <string name="button_side_description">Choose which side of the screen the button starts on. You can still drag it vertically.</string>
+
+    <string name="left_side">Left</string>
+    <string name="right_side">Right</string>
+
+    <string name="haptic_feedback">Haptic feedback</string>
+    <string name="assistant_fallback">Open Assistant if CTS fails</string>
+
+    <string name="testing_section">Test trigger</string>
+    <string name="testing_description">Test whether the direct Circle to Search trigger works on this device.</string>
+
+    <string name="test_cts_trigger">Test Circle to Search</string>
+    <string name="cts_trigger_success">Circle to Search trigger sent.</string>
+    <string name="cts_trigger_failed">Circle to Search trigger failed. Assistant fallback may open instead.</string>
+
+    <string name="help">Help</string>
+    <string name="help_title">Circle to Search trigger</string>
+    <string name="help_message">This app sends a direct trigger to the system voice-interaction service. The included LSPosed module must be enabled for Circle to Search to open. If the trigger fails, the app can open the Assistant instead.</string>
+
+    <string name="cts_button_description">Wake Circle to Search</string>
+
+    <string name="accessibility_service_description">Shows a floating button that can wake Circle to Search or the system Assistant.</string>
 </resources>

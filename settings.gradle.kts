@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "wakeCTS"
+rootProject.name = "CtsFloatingButton"
 include(":app")
