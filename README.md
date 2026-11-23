@@ -1,59 +1,22 @@
 # wakeCTS
 
-A modern Android app that shows a draggable floating button and attempts to wake Circle to Search.
+An utility that puts **Circle to Search** within reach through a draggable floating button. Includes an **LSPosed module** to route supported Assistant requests to Circle to Search.
 
-This project includes both:
+## Features
 
-- The floating-button app
-- A modern libxposed/LSPosed module required to convert the direct Assistant-session request into a Circle to Search request
+- **Floating shortcut:** Tap to trigger Circle to Search
 
-## Build
+## Requirements
 
-1. Extract the project.
-2. Open the folder in Android Studio.
-3. Let Gradle sync.
-4. Build and install the `app` module.
+- Android **8.0+** (API 26+).
+- **LSPosed** with access to **System Framework / Android System** for the Circle to Search hook.
+- A device with a compatible Circle to Search implementation; availability varies by device and ROM.
 
-The project uses the modern libxposed API:
+## Installation
 
-```kotlin
-compileOnly("io.github.libxposed:api:102.0.0")
-```
+1. Launch **wakeCTS** and enable its **Accessibility service**.
+2. In **LSPosed**, enable **wakeCTS**, select **System Framework / Android System** in its scope, and reboot.
+3. Return to wakeCTS and tap **Test Circle to Search**. Optionally add the **wakeCTS** tile from Android's Quick Settings editor.
 
-## Enable the app
+> If Circle to Search cannot be triggered, wakeCTS can open the system Assistant when the fallback setting is enabled. The floating shortcut can be disabled without turning off the Accessibility service.
 
-1. Open **wakeCTS**.
-2. Tap **Enable service**.
-3. Enable the Accessibility service.
-4. Return to the app.
-
-## Enable the LSPosed module
-
-1. Open LSPosed.
-2. Enable **wakeCTS**.
-3. Open its scope.
-4. Select **System Framework** or **Android System**.
-5. Reboot the device.
-
-The module scope is declared as `system` in:
-
-```text
-app/src/main/resources/META-INF/xposed/scope.list
-```
-
-## Test
-
-Tap **Test Circle to Search** in the app.
-
-If the direct trigger works, Circle to Search opens.  
-If it fails, the app opens the Assistant if **Open Assistant if CTS fails** is enabled.
-
-## Entry point
-
-The project uses entry point `1`, matching MiCTS’s Home-button long-press trigger.
-
-If your device needs a different value, change this in `CtsTrigger.kt`:
-
-```kotlin
-private const val CTS_ENTRY_POINT = 1
-```
